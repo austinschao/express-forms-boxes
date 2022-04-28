@@ -1,18 +1,24 @@
 import React, { useState } from "react";
 
+/** Create a form for adding a box
+ * Props: function addBox => adds a new box
+ * State: object of form data
+ */
 function NewBoxForm({ addBox }) {
   const initialState = { height: "", width: "", backgroundColor: "" };
-  const [formData, setForm] = useState(initialState);
+  const [formData, setFormData] = useState(initialState);
 
+  /** Updates the state with new changes */
   function handleChange(evt) {
     const { name, value } = evt.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   }
 
+  /** Sets the state for a new box and clears the form */
   function handleSubmit(evt) {
     evt.preventDefault();
     addBox(formData);
-    setForm(initialState);
+    setFormData(initialState);
   }
 
   return (
